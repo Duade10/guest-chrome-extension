@@ -1,0 +1,1 @@
+chrome.runtime.onInstalled.addListener(()=>{chrome.sidePanel.setPanelBehavior({openPanelOnActionClick:!0})});chrome.tabs.onActivated.addListener(r=>{chrome.tabs.get(r.tabId,e=>{e.url&&chrome.runtime.sendMessage({type:"TAB_UPDATED",url:e.url})})});chrome.tabs.onUpdated.addListener((r,e)=>{e.url&&chrome.runtime.sendMessage({type:"TAB_UPDATED",url:e.url})});

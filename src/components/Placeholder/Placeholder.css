@@ -1,0 +1,46 @@
+.placeholder-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: center;
+}
+
+.placeholder-title {
+	font-size: 2.6rem;
+	font-weight: bold;
+	color: #ffffff;
+	text-align: center;
+}
+
+.placeholder-text {
+	font-size: 1.6rem;
+	font-weight: bold;
+	color: #ffffff;
+	text-align: center;
+}
+
+.placeholder__eco-wrapper {
+	width: 100%;
+	margin-top: 40px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.placeholder__eco-item {
+	display: inline-block;
+	background-color: #000;
+	flex: 1 1 40%;
+	border-radius: 10px;
+	width: 100%;
+	padding: 10px 20px;
+	text-align: center;
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.placeholder__eco-item:hover {
+	background-color: rgb(43, 42, 42);
+	color: #ffffff;
+}

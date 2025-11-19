@@ -1,0 +1,15 @@
+{
+	"manifest_version": 3,
+	"name": "MrHost.ai",
+	"version": "0.0.1",
+	"description": "MrHost.ai extension",
+	"permissions": ["tabs", "sidePanel"],	
+	"background": {
+		"service_worker": "background.js",
+		"type": "module"
+	},
+	"side_panel": {
+		"default_path": "src/sidepanel.html",
+		"open_panel_action": "auto"
+	}
+}

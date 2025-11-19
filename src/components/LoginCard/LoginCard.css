@@ -1,0 +1,102 @@
+.login-page {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-self: center;
+	text-align: center;
+}
+
+.title {
+	color: #fff;
+	font-size: 2rem;
+	font-weight: 600;
+}
+
+.subtitle {
+	color: #fff;
+	font-size: 1.6rem;
+	font-weight: 500;
+}
+
+
+.login-card {
+	border-radius: 20px;
+	padding: 20px;
+	height: 170px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	text-align: center;
+	background: #fff;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-self: center;
+}
+
+form {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+h3 {
+	font-size: 1.5rem;
+	margin: 0;
+}
+
+.input-group {
+	width: 100%;
+	margin-bottom: 15px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	text-align: left;
+}
+
+.input-group label {
+	display: block;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.input-group input {
+	display: inline-block;
+	/* width: 100%; */
+	padding: 10px 10px ;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.styled-input {
+  padding: 12px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+
+.styled-input:focus {
+  border-color:#425b76;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+.styled-input::placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+.login-btn {
+	width: 100%;
+	padding: 10px;
+	border: none;
+	font-size: 16px;
+	background: #425b76;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.login-btn:hover {
+	background: #008f93;
+}
