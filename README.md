@@ -1,50 +1,62 @@
-# React + TypeScript + Vite
+# MrHost.ai Chrome Side Panel Extension
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a React + TypeScript + Vite Chrome extension that surfaces the MrHost.ai side panel alongside any active tab. The extension listens for tab changes in the background service worker and renders the side panel UI through React components.
 
-Currently, two official plugins are available:
+## Prerequisites
+- Node.js 18+ and npm (comes with Node).
+- Google Chrome or another Chromium-based browser for loading the unpacked extension.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
+2. **Start the development server (optional UI testing)**
+   ```bash
+   npm run dev
+   ```
+   This runs Vite on [http://localhost:5173](http://localhost:5173) with hot module reloading. Because Chrome extensions must be loaded from built assets, this command is primarily for iterating on UI components before producing a build.
+3. **Build the extension**
+   ```bash
+   npm run build
+   ```
+   The bundled extension assets are emitted to the `build/` directory with separate entry points for the popup, side panel, and background service worker.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Run locally (step-by-step commands)
+Use the following sequence of commands from a fresh clone to produce the unpacked build for Chrome:
+```bash
+git clone <repo-url>
+cd guest-chrome-extension
+npm install
+npm run build
 ```
+After the build completes, load the `build/` directory as an unpacked extension via `chrome://extensions`.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Loading the extension in Chrome
+1. Run `npm run build` to ensure the `build/` folder is up to date.
+2. Open Chrome and navigate to `chrome://extensions`.
+3. Enable **Developer mode** in the top-right corner.
+4. Click **Load unpacked** and select the `build/` directory from this repository.
+5. Pin the extension and open the side panel to verify the React UI renders correctly.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Environment configuration
+No secrets are required for local use. The only external dependency is the Healvi API base URL defined in [`src/consts/healvi.ts`](src/consts/healvi.ts).
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+If you need to override that value per environment, create a `.env` file at the project root (ignored by Git) and add Vite-prefixed variables, for example:
+```bash
+VITE_HEALVI_API_BASE_URL=https://example.com/third-party/v1
 ```
+Then update `src/consts/healvi.ts` to read from `import.meta.env.VITE_HEALVI_API_BASE_URL` so the build picks up your custom endpoint.
+
+## Available npm scripts
+- `npm run dev` – Start Vite in development mode with hot module reload.
+- `npm run build` – Type-check the project and produce production extension assets in `build/`.
+- `npm run preview` – Preview the production build locally.
+- `npm run lint` – Run ESLint against the project sources.
+
+## Project structure
+- `public/manifest.json` – Chrome extension manifest (MV3) configuring the background service worker and side panel.
+- `src/background.ts` – Background service worker that tracks tab changes and notifies the UI.
+- `src/sidepanel.html` – Entry HTML file for the side panel rendered by React.
+- `src/components/` – React components that render the side panel UI.
+- `src/hooks/useHealviChatIframe.ts` – Fetches the Healvi chat iframe URL from the configured API.
