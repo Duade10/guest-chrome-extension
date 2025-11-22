@@ -1,11 +1,7 @@
-import useGetWazzupIframe from '../../hooks/useGetWazzupIframe';
+import useHealviChatIframe from '../../hooks/useHealviChatIframe';
 
-interface IProps {
-	phone: string;
-}
-
-export default function ChatWithLead({ phone }: IProps) {
-	const { iframeLink } = useGetWazzupIframe(phone);
+export default function ChatWithLead() {
+        const { iframeLink } = useHealviChatIframe();
 
 	return (
 		<div
