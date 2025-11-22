@@ -1,1 +1,0 @@
-export const WAZZUP_API_KEY = '7bd6c578ed4c435db152c04299271609';

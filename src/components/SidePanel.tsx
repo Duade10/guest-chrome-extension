@@ -16,11 +16,11 @@ const SidePanel = () => {
 							conversation.Reservation.guestLastName}
 					</h1>
 					<h1 style={{color : '#fff'}}>{conversation.Reservation.phone}</h1>
-					<ChatWithLead phone={conversation.Reservation.phone} />
-				</div>
-			)}
-		</div>
-	);
+                                        <ChatWithLead />
+                                </div>
+                        )}
+                </div>
+        );
 };
 
 export default SidePanel;
